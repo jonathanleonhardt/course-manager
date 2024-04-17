@@ -1,17 +1,19 @@
 package br.com.alura.challenge.domain;
 
 import java.util.Calendar;
+import java.util.Set;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import br.com.alura.challenge.shared.Patterns;
+import br.com.alura.challenge.useCase.user.dto.UserRolesEnum;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,19 +36,17 @@ public class User {
 	private String name;
 
 	@Column( name = "username", length = 20, unique = true )
-	@Pattern(regexp = Patterns.USERNAME, message = "Invalid Username")
-	@Size( max = 20, message = "You cant use more than 20 caracteres in username" )
 	private String username;
 
 	@Column( name = "password", columnDefinition = "text", nullable = false )
 	private String password;
 
-	// Role(ESTUDANTE, INSTRUTOR, ADMIN)
 	@Column( name = "roles" )
-	private String roles;
+	@ElementCollection( targetClass = UserRolesEnum.class )
+	@Enumerated( EnumType.STRING )
+	private Set< UserRolesEnum > roles;
 
 	@Column( name = "email", columnDefinition = "text", unique = true )
-	@Pattern(regexp = Patterns.EMAIL, message = "Invalid Email")
 	private String email;
 
 	@Builder.Default
