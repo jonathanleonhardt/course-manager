@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.alura.challenge.useCase.user.GetUserByUsernameUseCase;
+import br.com.alura.challenge.useCase.user.GetUserByUsername;
 import br.com.alura.challenge.useCase.user.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping( "/api/user" )
 public class UserResource {
 
-	private final GetUserByUsernameUseCase getUserByUsername;
+	private final GetUserByUsername getUserByUsername;
 
 	@GetMapping( "/{username}" )
 	public ResponseEntity< UserDTO > getUserByUsername( @PathVariable String username ) {

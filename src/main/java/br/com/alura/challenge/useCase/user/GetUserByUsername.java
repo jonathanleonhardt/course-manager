@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 
 import br.com.alura.challenge.domain.User;
 import br.com.alura.challenge.repository.UserRepository;
-import br.com.alura.challenge.shared.Usecase;
+import br.com.alura.challenge.shared.UseCase;
 import br.com.alura.challenge.useCase.user.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class GetUserByUsernameUseCase implements Usecase< String, UserDTO > {
+public class GetUserByUsername implements UseCase< String, UserDTO > {
 
 	private final UserRepository userRepository;
 
