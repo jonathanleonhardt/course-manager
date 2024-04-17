@@ -1,5 +1,7 @@
 package br.com.alura.challenge.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,6 +14,8 @@ import br.com.alura.challenge.domain.Course;
 
 @Repository
 public interface CourseRepository extends JpaRepository< Course, String > {
+
+	Optional< Course > findByCode( String code );
 
 	@Query( "SELECT c FROM Course c where c.active = :active" )
 	Page< Course > listCourseByStatus( @Param( "active" ) Boolean status, Pageable pageable );
