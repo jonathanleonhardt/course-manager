@@ -24,7 +24,7 @@ public class CreateUser implements UseCase< CreateUserDTO, GetUserDTO > {
 				.withPassword( dto.email() )
 				.withRoles( dto.roles() )
 				.build();
-		this.userRepository.save( user );
+		user = this.userRepository.save( user );
 		return new GetUserDTO( user.getName(), user.getEmail(), user.getRoles() );
 	}
 	

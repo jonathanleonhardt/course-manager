@@ -9,15 +9,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import br.com.alura.challenge.domain.Course;
+import br.com.alura.challenge.domain.User;
 import br.com.alura.challenge.repository.CourseRepository;
 import br.com.alura.challenge.shared.UseCase;
+import br.com.alura.challenge.useCase.course.dto.GetCourseDTO;
 import br.com.alura.challenge.useCase.course.dto.ListCoursesParamDTO;
+import br.com.alura.challenge.useCase.user.dto.GetUserDTO;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class ListCoursesByStatusAndPage implements UseCase< ListCoursesParamDTO, List< Course > > {
+public class ListCoursesByStatusAndPage implements UseCase< ListCoursesParamDTO, List< GetCourseDTO > > {
 
 	private static final int DEFAULT_PAGE_SIZE = 10;
 	private static final Sort sort = Sort.by( "createdAt" ).ascending();
@@ -25,7 +27,7 @@ public class ListCoursesByStatusAndPage implements UseCase< ListCoursesParamDTO,
 	private final CourseRepository courseRepository;
 
 	@Override
-	public List< Course > execute( ListCoursesParamDTO params ) {
+	public List< GetCourseDTO > execute( ListCoursesParamDTO params ) {
 		if ( !Objects.isNull( params.pageable() ) ) {
 			PageRequest page = PageRequest.of( 0, DEFAULT_PAGE_SIZE, sort );
 			return this.getCourseList( params, page );
@@ -33,10 +35,26 @@ public class ListCoursesByStatusAndPage implements UseCase< ListCoursesParamDTO,
 		return this.getCourseList( params, params.pageable() );
 	}
 
-	private List< Course > getCourseList( ListCoursesParamDTO params, Pageable pageable ) {
+	private List< GetCourseDTO > getCourseList( ListCoursesParamDTO params, Pageable pageable ) {
 		return this.courseRepository
 				.listCourseByStatus( params.active(), pageable )
 				.stream()
+				.map( course -> {
+					User instructor = course.getInstructor();
+					GetUserDTO instructorDTO = new GetUserDTO(
+							instructor.getName(),
+							instructor.getEmail(),
+							null );
+					return new GetCourseDTO(
+							course.getId(),
+							course.getName(),
+							course.getDescription(),
+							course.getCode(),
+							instructorDTO,
+							course.getActive(),
+							course.getCreatedAt(),
+							course.getInactivatedAt() );
+				} )
 				.collect( Collectors.toList() );
 	}
 
