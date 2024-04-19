@@ -1,5 +1,6 @@
 package br.com.alura.course.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -25,5 +26,7 @@ public interface CourseRepository extends JpaRepository< Course, String > {
 			+ "SET c.inactivatedAt = CURRENT_TIMESTAMP, c.active = false "
 			+ "WHERE c.code = :code" )
 	void setCourseInactive( @Param( "code" ) String code );
+
+	List< Course > listByActive( Boolean active );
 
 }

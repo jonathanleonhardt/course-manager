@@ -23,7 +23,7 @@ public class CreateCourse implements UseCase< CreateCourseDTO, GetCourseDTO > {
 	private final CourseRepository courseRepository;
 
 	@Override
-	public GetCourseDTO execute( CreateCourseDTO dto ) throws Exception {
+	public GetCourseDTO execute( CreateCourseDTO dto ) throws NoSuchElementException {
 		Optional< User > userOpt = this.userRepository.findById( dto.instructorId() );
 		if ( userOpt.isEmpty() ) {
 			throw new NoSuchElementException( "Instructor not found for id " + dto.instructorId() );

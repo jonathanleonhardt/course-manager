@@ -28,5 +28,5 @@ public class FeedbackResource {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 }

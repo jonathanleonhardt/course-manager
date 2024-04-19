@@ -1,0 +1,32 @@
+package br.com.alura.gateway;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.alura.core.dto.CourseNpsDTO;
+import br.com.alura.dashboard.GenerateCurrentNPS;
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping( "/api/dashboard" )
+public class DashboardResource {
+
+	private final GenerateCurrentNPS generateCurrentNPS;
+	
+	@GetMapping( "/nps/list" )
+	public ResponseEntity< List< CourseNpsDTO > > listNPS() {
+
+		try {
+			return ResponseEntity.ok( this.generateCurrentNPS.execute() );
+		} catch ( Exception e) {
+			return ResponseEntity.badRequest().build();
+		}
+		
+	}
+
+}

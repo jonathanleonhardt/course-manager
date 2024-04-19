@@ -26,7 +26,7 @@ public class CreateUser implements UseCase< CreateUserDTO, GetUserDTO > {
 	private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	@Override
-	public GetUserDTO execute( CreateUserDTO dto ) throws Exception {
+	public GetUserDTO execute( CreateUserDTO dto ) throws IllegalArgumentException {
 		Role role = getRoleToPersist( dto );
 		String hashedPassword = passwordEncoder.encode( dto.password() );
 		User user = User.builder()
