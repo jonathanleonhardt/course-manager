@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.alura.core.dto.CreateUserDTO;
 import br.com.alura.core.dto.GetUserDTO;
-import br.com.alura.user.useCase.CreateUser;
-import br.com.alura.user.useCase.GetUserByUsername;
+import br.com.alura.user.IUserManagement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -23,13 +22,12 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping( "/api/user" )
 public class UserResource {
 
-	private final GetUserByUsername getUserByUsername;
-	private final CreateUser createUser;
+	private final IUserManagement userManagement;
 
 	@PostMapping( "/create" )
 	public ResponseEntity< GetUserDTO > createUser( @Valid @RequestBody CreateUserDTO user ) {
 		try {
-			return ResponseEntity.ok( this.createUser.execute( user ) );
+			return ResponseEntity.ok( this.userManagement.createUser( user ) );
 		} catch ( Exception e ) {
 			return ResponseEntity.badRequest().build();
 		}
@@ -39,7 +37,7 @@ public class UserResource {
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity< GetUserDTO > getUserByUsername( @PathVariable String username ) {
 		try {
-			return ResponseEntity.ok( this.getUserByUsername.execute( username ) );
+			return ResponseEntity.ok( this.userManagement.getUserByUsername( username ) );
 		} catch ( NoSuchElementException e) {
 			return ResponseEntity.notFound().build();
 		}

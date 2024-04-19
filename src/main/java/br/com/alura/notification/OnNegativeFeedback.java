@@ -4,18 +4,20 @@ import org.springframework.modulith.events.ApplicationModuleListener;
 import org.springframework.stereotype.Service;
 
 import br.com.alura.core.event.NotifyFeedbackEvent;
+import br.com.alura.core.shared.UseCase;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class OnNegativeFeedback {
+public class OnNegativeFeedback implements UseCase< NotifyFeedbackEvent, Void > {
 
 	@ApplicationModuleListener
-	void execute( NotifyFeedbackEvent event ) {
+	public Void execute( NotifyFeedbackEvent event ) {
 		String recipient = this.getRecipient( event );
 		String subject = this.getSubject( event );
 		String body = this.getBody( event );
 		EmailSender.send( recipient, subject, body );
+		return null;
 	}
 
 	private String getRecipient( NotifyFeedbackEvent event ) {

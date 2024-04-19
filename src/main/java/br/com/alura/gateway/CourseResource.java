@@ -17,10 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.alura.core.dto.CreateCourseDTO;
 import br.com.alura.core.dto.GetCourseDTO;
-import br.com.alura.core.dto.ListCoursesParamDTO;
-import br.com.alura.course.userCase.CreateCourse;
-import br.com.alura.course.userCase.InactivateCourse;
-import br.com.alura.course.userCase.ListCoursesByStatusAndPage;
+import br.com.alura.core.dto.ParamsListCoursesDTO;
+import br.com.alura.course.ICourseManagement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -29,16 +27,14 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping( "/api/course" )
 public class CourseResource {
 
-	private final InactivateCourse inactivateCourse;
-	private final ListCoursesByStatusAndPage listCourses;
-	private final CreateCourse createCourse;
+	private final ICourseManagement courseManagement;
 
 	@PostMapping( "/create" )
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity< GetCourseDTO > createCourse( @Valid @RequestBody CreateCourseDTO course ) {
 		try {
-			return ResponseEntity.ok( this.createCourse.execute( course ) );
-		} catch ( Exception e) {
+			return ResponseEntity.ok( this.courseManagement.createCourse( course ) );
+		} catch ( Exception e ) {
 			return ResponseEntity.badRequest().build();
 		}
 	}
@@ -47,8 +43,8 @@ public class CourseResource {
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity< List< GetCourseDTO > > listCourses( Pageable pageable, @RequestParam( value = "active" ) Boolean active ) {
 		try {
-			ListCoursesParamDTO params = new ListCoursesParamDTO( active, pageable );
-			return ResponseEntity.ok( this.listCourses.execute( params ) );
+			ParamsListCoursesDTO params = new ParamsListCoursesDTO( active, pageable );
+			return ResponseEntity.ok( this.courseManagement.listCoursesByParams( params ) );
 		} catch ( Exception e ) {
 			return ResponseEntity.badRequest().build();
 		}
@@ -58,8 +54,8 @@ public class CourseResource {
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity< Void > inactivateCourse( @PathVariable String code ) {
 		try {
-			return ResponseEntity.ok( this.inactivateCourse.execute( code ) );
-		} catch ( NoSuchElementException e) {
+			return ResponseEntity.ok( this.courseManagement.inactivateCourse( code ) );
+		} catch ( NoSuchElementException e ) {
 			return ResponseEntity.notFound().build();
 		}
 	}

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.alura.core.dto.CourseNpsDTO;
-import br.com.alura.dashboard.GenerateCurrentNPS;
+import br.com.alura.dashboard.IDashboardManagement;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -16,13 +16,12 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping( "/api/dashboard" )
 public class DashboardResource {
 
-	private final GenerateCurrentNPS generateCurrentNPS;
+	private final IDashboardManagement dashboardManagement;
 	
-	@GetMapping( "/nps/list" )
+	@GetMapping( "/nps" )
 	public ResponseEntity< List< CourseNpsDTO > > listNPS() {
-
 		try {
-			return ResponseEntity.ok( this.generateCurrentNPS.execute() );
+			return ResponseEntity.ok( this.dashboardManagement.generateCurrentNps() );
 		} catch ( Exception e) {
 			return ResponseEntity.badRequest().build();
 		}
