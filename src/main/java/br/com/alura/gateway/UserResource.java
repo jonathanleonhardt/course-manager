@@ -3,6 +3,7 @@ package br.com.alura.gateway;
 import java.util.NoSuchElementException;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,12 +30,13 @@ public class UserResource {
 	public ResponseEntity< GetUserDTO > createUser( @Valid @RequestBody CreateUserDTO user ) {
 		try {
 			return ResponseEntity.ok( this.createUser.execute( user ) );
-		} catch ( Exception e) {
+		} catch ( Exception e ) {
 			return ResponseEntity.badRequest().build();
 		}
 	}
 
-	@GetMapping( "/{username}" )
+	@GetMapping( "/info/{username}" )
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity< GetUserDTO > getUserByUsername( @PathVariable String username ) {
 		try {
 			return ResponseEntity.ok( this.getUserByUsername.execute( username ) );

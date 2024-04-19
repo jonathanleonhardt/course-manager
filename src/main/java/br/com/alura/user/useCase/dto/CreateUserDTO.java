@@ -1,7 +1,5 @@
 package br.com.alura.user.useCase.dto;
 
-import java.util.Set;
-
 import br.com.alura.core.enums.UserRolesEnum;
 import br.com.alura.core.shared.Patterns;
 import jakarta.validation.constraints.NotBlank;
@@ -19,5 +17,5 @@ public record CreateUserDTO(
 		@NotBlank
 		String password,
 		@NotBlank
-		Set< UserRolesEnum > roles ) {
+		UserRolesEnum role ) {
 }

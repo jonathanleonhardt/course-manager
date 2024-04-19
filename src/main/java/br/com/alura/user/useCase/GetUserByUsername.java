@@ -24,7 +24,7 @@ public class GetUserByUsername implements UseCase< String, GetUserDTO > {
 			throw new NoSuchElementException( "User not found" );
 		}
 		User user = userOpt.get();
-		return new GetUserDTO( user.getUsername(), user.getEmail(), user.getRoles() );
+		return new GetUserDTO( user.getName(), user.getEmail(), user.getRole().getName() );
 	}
 
 }

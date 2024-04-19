@@ -5,14 +5,14 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import br.com.alura.challenge.domain.Course;
-import br.com.alura.challenge.repository.CourseRepository;
-import br.com.alura.challenge.useCase.course.dto.CreateCourseDTO;
-import br.com.alura.challenge.useCase.course.dto.GetCourseDTO;
-import br.com.alura.challenge.useCase.user.dto.GetUserDTO;
 import br.com.alura.core.shared.UseCase;
+import br.com.alura.course.domain.Course;
+import br.com.alura.course.repository.CourseRepository;
+import br.com.alura.course.userCase.dto.CreateCourseDTO;
+import br.com.alura.course.userCase.dto.GetCourseDTO;
 import br.com.alura.user.domain.User;
 import br.com.alura.user.repository.UserRepository;
+import br.com.alura.user.useCase.dto.GetUserDTO;
 import lombok.RequiredArgsConstructor;
 
 @Service

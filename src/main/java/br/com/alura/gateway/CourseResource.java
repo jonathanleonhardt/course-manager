@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.alura.challenge.useCase.course.CreateCourse;
-import br.com.alura.challenge.useCase.course.InactivateCourse;
-import br.com.alura.challenge.useCase.course.ListCoursesByStatusAndPage;
-import br.com.alura.challenge.useCase.course.dto.CreateCourseDTO;
-import br.com.alura.challenge.useCase.course.dto.GetCourseDTO;
-import br.com.alura.challenge.useCase.course.dto.ListCoursesParamDTO;
+import br.com.alura.course.userCase.CreateCourse;
+import br.com.alura.course.userCase.InactivateCourse;
+import br.com.alura.course.userCase.ListCoursesByStatusAndPage;
+import br.com.alura.course.userCase.dto.CreateCourseDTO;
+import br.com.alura.course.userCase.dto.GetCourseDTO;
+import br.com.alura.course.userCase.dto.ListCoursesParamDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -33,6 +34,7 @@ public class CourseResource {
 	private final CreateCourse createCourse;
 
 	@PostMapping( "/create" )
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity< GetCourseDTO > createUser( @Valid @RequestBody CreateCourseDTO course ) {
 		try {
 			return ResponseEntity.ok( this.createCourse.execute( course ) );
@@ -42,6 +44,7 @@ public class CourseResource {
 	}
 
 	@GetMapping( "/list" )
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity< List< GetCourseDTO > > listCourses( Pageable pageable, @RequestParam( value = "active" ) Boolean active ) {
 		try {
 			ListCoursesParamDTO params = new ListCoursesParamDTO( active, pageable );
@@ -52,6 +55,7 @@ public class CourseResource {
 	}
 
 	@PutMapping( "/inactive/{code}" )
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity< Void > inactivateCourse( @PathVariable String code ) {
 		try {
 			return ResponseEntity.ok( this.inactivateCourse.execute( code ) );

@@ -1,18 +1,17 @@
 package br.com.alura.user.domain;
 
 import java.util.Calendar;
-import java.util.Set;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import br.com.alura.core.enums.UserRolesEnum;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,10 +40,9 @@ public class User {
 	@Column( name = "password", columnDefinition = "text", nullable = false )
 	private String password;
 
-	@Column( name = "roles" )
-	@ElementCollection( targetClass = UserRolesEnum.class )
-	@Enumerated( EnumType.STRING )
-	private Set< UserRolesEnum > roles;
+	@ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.REMOVE )
+	@JoinColumn( name = "role_id", referencedColumnName = "id", nullable = false )
+	private Role role;
 
 	@Column( name = "email", columnDefinition = "text", unique = true )
 	private String email;

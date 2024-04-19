@@ -1,4 +1,4 @@
-package br.com.alura.challenge.useCase.enroll.dto;
+package br.com.alura.enroll.useCase.dto;
 
 import java.util.Calendar;
 
