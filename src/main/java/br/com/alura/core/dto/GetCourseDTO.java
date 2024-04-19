@@ -1,8 +1,6 @@
-package br.com.alura.course.userCase.dto;
+package br.com.alura.core.dto;
 
 import java.util.Calendar;
-
-import br.com.alura.user.useCase.dto.GetUserDTO;
 
 public record GetCourseDTO(
 		String id,

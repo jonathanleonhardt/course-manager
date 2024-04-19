@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.alura.core.dto.CreateUserDTO;
+import br.com.alura.core.dto.GetUserDTO;
 import br.com.alura.user.useCase.CreateUser;
 import br.com.alura.user.useCase.GetUserByUsername;
-import br.com.alura.user.useCase.dto.CreateUserDTO;
-import br.com.alura.user.useCase.dto.GetUserDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 

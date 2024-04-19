@@ -6,13 +6,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import br.com.alura.core.dto.CreateUserDTO;
+import br.com.alura.core.dto.GetUserDTO;
 import br.com.alura.core.shared.UseCase;
 import br.com.alura.user.domain.Role;
 import br.com.alura.user.domain.User;
 import br.com.alura.user.repository.RoleRepository;
 import br.com.alura.user.repository.UserRepository;
-import br.com.alura.user.useCase.dto.CreateUserDTO;
-import br.com.alura.user.useCase.dto.GetUserDTO;
 import lombok.RequiredArgsConstructor;
 
 @Service

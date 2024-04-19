@@ -7,13 +7,13 @@ import java.util.Optional;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import br.com.alura.core.dto.CreateEnrollDTO;
+import br.com.alura.core.dto.GetEnrollDTO;
 import br.com.alura.core.shared.UseCase;
 import br.com.alura.course.domain.Course;
 import br.com.alura.course.repository.CourseRepository;
 import br.com.alura.enroll.domain.Enroll;
 import br.com.alura.enroll.repository.EnrollRepository;
-import br.com.alura.enroll.useCase.dto.CreateEnrollDTO;
-import br.com.alura.enroll.useCase.dto.GetEnrollDTO;
 import br.com.alura.user.domain.User;
 import br.com.alura.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

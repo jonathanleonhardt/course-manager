@@ -1,4 +1,4 @@
-package br.com.alura.user.useCase.dto;
+package br.com.alura.core.dto;
 
 import br.com.alura.core.enums.UserRolesEnum;
 import br.com.alura.core.shared.Patterns;

@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.alura.core.dto.CreateEnrollDTO;
+import br.com.alura.core.dto.GetEnrollDTO;
 import br.com.alura.enroll.useCase.CreateEnroll;
-import br.com.alura.enroll.useCase.dto.CreateEnrollDTO;
-import br.com.alura.enroll.useCase.dto.GetEnrollDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 

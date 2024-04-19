@@ -9,12 +9,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import br.com.alura.core.dto.GetCourseDTO;
+import br.com.alura.core.dto.GetUserDTO;
+import br.com.alura.core.dto.ListCoursesParamDTO;
 import br.com.alura.core.shared.UseCase;
 import br.com.alura.course.repository.CourseRepository;
-import br.com.alura.course.userCase.dto.GetCourseDTO;
-import br.com.alura.course.userCase.dto.ListCoursesParamDTO;
 import br.com.alura.user.domain.User;
-import br.com.alura.user.useCase.dto.GetUserDTO;
 import lombok.RequiredArgsConstructor;
 
 @Service

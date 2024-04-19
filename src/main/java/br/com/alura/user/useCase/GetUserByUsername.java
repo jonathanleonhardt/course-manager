@@ -5,10 +5,10 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import br.com.alura.core.dto.GetUserDTO;
 import br.com.alura.core.shared.UseCase;
 import br.com.alura.user.domain.User;
 import br.com.alura.user.repository.UserRepository;
-import br.com.alura.user.useCase.dto.GetUserDTO;
 import lombok.RequiredArgsConstructor;
 
 @Service

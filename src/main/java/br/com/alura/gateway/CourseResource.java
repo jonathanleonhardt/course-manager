@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.alura.core.dto.CreateCourseDTO;
+import br.com.alura.core.dto.GetCourseDTO;
+import br.com.alura.core.dto.ListCoursesParamDTO;
 import br.com.alura.course.userCase.CreateCourse;
 import br.com.alura.course.userCase.InactivateCourse;
 import br.com.alura.course.userCase.ListCoursesByStatusAndPage;
-import br.com.alura.course.userCase.dto.CreateCourseDTO;
-import br.com.alura.course.userCase.dto.GetCourseDTO;
-import br.com.alura.course.userCase.dto.ListCoursesParamDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 

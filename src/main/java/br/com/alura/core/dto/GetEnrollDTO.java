@@ -1,4 +1,4 @@
-package br.com.alura.enroll.useCase.dto;
+package br.com.alura.core.dto;
 
 import java.util.Calendar;
 

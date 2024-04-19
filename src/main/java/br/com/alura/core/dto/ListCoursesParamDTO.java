@@ -1,4 +1,4 @@
-package br.com.alura.course.userCase.dto;
+package br.com.alura.core.dto;
 
 import org.springframework.data.domain.Pageable;
 
