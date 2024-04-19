@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS public.course;
+DROP TABLE IF EXISTS public.course CASCADE;
 
 CREATE TABLE public.course (
 	active bool NULL,
