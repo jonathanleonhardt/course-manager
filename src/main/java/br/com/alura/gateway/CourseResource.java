@@ -35,7 +35,7 @@ public class CourseResource {
 
 	@PostMapping( "/create" )
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity< GetCourseDTO > createUser( @Valid @RequestBody CreateCourseDTO course ) {
+	public ResponseEntity< GetCourseDTO > createCourse( @Valid @RequestBody CreateCourseDTO course ) {
 		try {
 			return ResponseEntity.ok( this.createCourse.execute( course ) );
 		} catch ( Exception e) {

@@ -20,12 +20,12 @@ public class EnrollResource {
 	private final CreateEnroll createEnroll;
 
 	@PostMapping( "/create" )
-	public ResponseEntity< GetEnrollDTO > createUser( @Valid @RequestBody CreateEnrollDTO enroll ) {
+	public ResponseEntity< GetEnrollDTO > createEnroll( @Valid @RequestBody CreateEnrollDTO enroll ) {
 		try {
 			return ResponseEntity.ok( this.createEnroll.execute( enroll ) );
 		} catch ( Exception e) {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 }
