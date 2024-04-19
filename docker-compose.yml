@@ -13,6 +13,29 @@ services:
     volumes:
       - database-data-alura-db:/var/lib/postgresql/data/
 
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    extra_hosts: [ 'host.docker.internal:host-gateway' ]
+    ports:
+      - "9411:9411"
+
+  # rabbitmq:
+  #   image: rabbitmq:3.11.6-management
+  #   container_name: rabbitmq-alura
+  #   ports:
+  #       - 5672:5672
+  #       - 15672:15672
+  #   environment:
+  #     RABBITMQ_DEFAULT_USER: guest
+  #     RABBITMQ_DEFAULT_PASS: guest
+  #     ERL_EPMD_PORT: 4369
+  #   volumes:
+  #       - rabbitmq-data:/var/lib/rabbitmq/
+  #       - rabbitmq-log:/var/log/rabbitmq/
+
 volumes:
   database-data-alura-db:
+  # rabbitmq-data:
+  # rabbitmq-log:
 
