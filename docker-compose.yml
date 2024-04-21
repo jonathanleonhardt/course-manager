@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+
+  postgresql:
+    image: postgres
+    container_name: postgresql-alura
+    ports:
+      - 5434:5432
+    environment: 
+      POSTGRES_USER: alura
+      POSTGRES_PASSWORD: alura
+      POSTGRES_DB: alura_db
+    networks:
+      - spring-cloud-network
+    volumes:
+      - database-data-alura-db:/var/lib/postgresql/data/
+
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    extra_hosts: [ 'host.docker.internal:host-gateway' ]
+    ports:
+      - "9411:9411"
+    networks:
+      - spring-cloud-network
+
+volumes:
+  database-data-alura-db:
+
+networks:
+  spring-cloud-network:
+    driver: bridge
+
