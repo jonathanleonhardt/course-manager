@@ -25,6 +25,24 @@ services:
     networks:
       - spring-cloud-network
 
+  challenge:
+    container_name: challenge
+    image: challenge:latest
+    build:
+      context: .
+      dockerfile: ./src/main/docker/Dockerfile
+    ports:
+      - 8081:8081
+    depends_on:
+      - postgresql
+      - zipkin
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/alura_db
+      - SPRING_DATASOURCE_USERNAME=alura
+      - SPRING_DATASOURCE_PASSWORD=alura
+    networks:
+      - spring-cloud-network
+
 volumes:
   database-data-alura-db:
 

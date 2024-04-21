@@ -13,3 +13,4 @@ WORKDIR /app
 COPY --from=build /app/target/challenge-0.0.1-SNAPSHOT.jar .
 
 CMD ["java", "-jar", "challenge-0.0.1-SNAPSHOT.jar"]
+
