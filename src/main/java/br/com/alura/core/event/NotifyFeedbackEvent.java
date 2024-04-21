@@ -1,7 +1,7 @@
 package br.com.alura.core.event;
 
 public record NotifyFeedbackEvent(
-		Long rating,
+		Integer rating,
 		String description,
 		String courseCode,
 		String studentId,

@@ -26,5 +26,5 @@ public class UserManagement implements IUserManagement {
 	public GetUserDTO getUserByUsername( String username ) throws NoSuchElementException {
 		return this.getUserByUsername.execute( username );
 	}
-	
+
 }

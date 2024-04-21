@@ -32,7 +32,7 @@ public class OnNegativeFeedback implements UseCase< NotifyFeedbackEvent, Void > 
 	private String getBody( NotifyFeedbackEvent event ) {
 		return """
 
-					New negative feedback of %l in %s
+					New negative feedback of %d in %s
 
 					STUDENT: %s - %s
 

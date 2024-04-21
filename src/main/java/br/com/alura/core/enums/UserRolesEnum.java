@@ -2,6 +2,6 @@ package br.com.alura.core.enums;
 
 public enum UserRolesEnum {
 
-	ADMIN, STUDENT, INSTRUCTOR;
+	ADMIN, ESTUDANTE, INSTRUTOR;
 
 }

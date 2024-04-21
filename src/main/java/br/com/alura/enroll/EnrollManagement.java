@@ -17,8 +17,7 @@ public class EnrollManagement implements IEnrollManagement {
 	private final CreateEnroll createEnroll;
 
 	@Override
-	public GetEnrollDTO createEnroll( CreateEnrollDTO dto )
-			throws NotActiveException, NoSuchElementException {
+	public GetEnrollDTO createEnroll( CreateEnrollDTO dto ) throws NotActiveException, NoSuchElementException {
 		return this.createEnroll.execute( dto );
 	}
 	

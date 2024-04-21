@@ -6,12 +6,12 @@ import jakarta.validation.constraints.NotBlank;
 
 public record CreateFeedbackDTO(
 			@NotBlank
-			String student_id,
+			String studentId,
 			@NotBlank
-			String couse_id,
+			String courseId,
 			@Min(0)
 			@Max(10)
-			Long rating,
+			Integer rating,
 			String description
 ) {
 }
