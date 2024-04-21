@@ -27,8 +27,13 @@ public class WebSecurityConfig {
 		http.csrf( AbstractHttpConfigurer::disable )
 				.authorizeHttpRequests(
 						authorize -> authorize
-								.requestMatchers( "/api/user/create" ).permitAll()
-								.requestMatchers( "/swagger-ui/**" ).permitAll()
+								.requestMatchers( 
+									"/api/user/create",
+										"/v3/api-docs",
+										"/swagger-ui/**",
+										"/swagger-resources/**",
+										"/*/swagger-resources/**",
+										"/*/v3/api-docs" ).permitAll()
 								.anyRequest().authenticated() )
 				.httpBasic( Customizer.withDefaults() )
 				.sessionManagement(
