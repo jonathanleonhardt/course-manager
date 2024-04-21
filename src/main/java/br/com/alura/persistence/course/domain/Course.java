@@ -6,7 +6,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import br.com.alura.core.shared.Patterns;
 import br.com.alura.persistence.user.domain.User;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -46,7 +45,7 @@ public class Course {
 	@Pattern(regexp = Patterns.COURSE_CODE, message = "Invalid course code")
 	private String code;
 
-	@ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.REMOVE )
+	@ManyToOne( fetch = FetchType.EAGER )
 	@JoinColumn( name = "instructor_id", referencedColumnName = "id", nullable = false )
 	private User instructor;
 	

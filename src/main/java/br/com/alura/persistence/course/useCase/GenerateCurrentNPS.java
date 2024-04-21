@@ -31,10 +31,10 @@ public class GenerateCurrentNPS implements UseCase< Void, List< CourseNpsDTO > >
 	}
 
 	private double getCourseNPS( Course course ) {
-		List< Long > ratings = this.getCourseRatings( course );
+		List< Integer > ratings = this.getCourseRatings( course );
 		int promoters = 0;
 		int detractors = 0;
-		for ( Long rating : ratings ) {
+		for ( Integer rating : ratings ) {
 			if ( rating >= 9 ) {
 				promoters++;
 			} else if ( rating <= 6 ) {
@@ -45,7 +45,7 @@ public class GenerateCurrentNPS implements UseCase< Void, List< CourseNpsDTO > >
 		return nps;
 	}
 
-	private List< Long > getCourseRatings( Course course ) {
+	private List< Integer > getCourseRatings( Course course ) {
 		return this.feedbackRepository.listByCourseId( course.getId() ).stream()
 				.map( feedback -> feedback.getRating() )
 				.collect( Collectors.toList() );

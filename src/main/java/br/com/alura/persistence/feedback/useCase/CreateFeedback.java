@@ -27,8 +27,8 @@ public class CreateFeedback implements UseCase< CreateFeedbackDTO, Void > {
 
 	@Override
 	public Void execute( CreateFeedbackDTO dto ) throws EntityNotFoundException {
-		User student = this.userRepository.getReferenceById( dto.student_id() );
-		Course course = this.courseRepository.getReferenceById( dto.couse_id() );
+		User student = this.userRepository.getReferenceById( dto.studentId() );
+		Course course = this.courseRepository.getReferenceById( dto.courseId() );
 		Feedback feedback = Feedback.builder()
 				.withRating( dto.rating() )
 				.withDescription( dto.description() )

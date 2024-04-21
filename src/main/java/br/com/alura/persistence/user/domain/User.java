@@ -4,7 +4,6 @@ import java.util.Calendar;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -40,7 +39,7 @@ public class User {
 	@Column( name = "password", columnDefinition = "text", nullable = false )
 	private String password;
 
-	@ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.REMOVE )
+	@ManyToOne( fetch = FetchType.EAGER )
 	@JoinColumn( name = "role_id", referencedColumnName = "id", nullable = false )
 	private Role role;
 

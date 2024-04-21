@@ -34,9 +34,11 @@ public class CreateEnroll implements UseCase< CreateEnrollDTO, GetEnrollDTO > {
 			throw new DuplicateKeyException( "Student already registered" );
 		}
 		Enroll enroll = Enroll.builder()
-				.withCourse( course )
 				.withStudent( student )
+				.withCourse( course )
 				.build();
+		System.out.println( "\nSTUDENT -> " + student );
+		System.out.println( "COURSE -> " + course  + "\n\n");
 		enroll = this.enrollRepository.save( enroll );
 		return new GetEnrollDTO(
 				enroll.getId(),
@@ -51,7 +53,7 @@ public class CreateEnroll implements UseCase< CreateEnrollDTO, GetEnrollDTO > {
 	}
 
 	private Course getCourse( CreateEnrollDTO dto ) throws NotActiveException, NoSuchElementException {
-		Optional < Course > courseOpt = this.courseRepository.findByCode( dto.courseId() );
+		Optional < Course > courseOpt = this.courseRepository.findById( dto.courseId() );
 		if ( courseOpt.isEmpty() ) {
 			throw new NoSuchElementException( "Course not found by id " + dto.courseId() );
 		}

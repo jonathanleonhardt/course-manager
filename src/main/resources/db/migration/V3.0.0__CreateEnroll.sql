@@ -6,8 +6,6 @@ CREATE TABLE public.enroll (
 	course_id varchar(255) NOT NULL,
 	student_id varchar(255) NOT NULL,
 	CONSTRAINT enroll_pkey PRIMARY KEY (id),
-	CONSTRAINT uk_ilbwjpimrhpyuhnptyc0970td UNIQUE (student_id),
-	CONSTRAINT uk_sad49in7qcjplw43tc4die7q8 UNIQUE (course_id),
 	CONSTRAINT fkiv2pkft2ab8mqx9ffc4ex4q7e FOREIGN KEY (course_id) REFERENCES public.course(id),
 	CONSTRAINT fkr5q610w53w8qkm6c0o7llx3ct FOREIGN KEY (student_id) REFERENCES public.alura_user(id)
 );

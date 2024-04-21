@@ -6,7 +6,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import br.com.alura.persistence.course.domain.Course;
 import br.com.alura.persistence.user.domain.User;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -33,16 +32,16 @@ public class Feedback {
 	@GenericGenerator( name = "uuid", strategy = "uuid2" )
 	private String id;
 
-	@ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.REMOVE )
+	@ManyToOne( fetch = FetchType.EAGER )
 	@JoinColumn( name = "student_id", referencedColumnName = "id", nullable = false )
 	private User student;
 
-	@ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.REMOVE )
+	@ManyToOne( fetch = FetchType.EAGER )
 	@JoinColumn( name = "course_id", referencedColumnName = "id", nullable = false )
 	private Course course;
 
 	@Column( name = "rating" )
-	private Long rating;
+	private Integer rating;
 
 	@Column( name = "description" )
 	private String description;
